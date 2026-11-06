@@ -1,0 +1,18 @@
+# Dataset (download from Kaggle)
+*.csv
+!results/*.csv
+
+# Files the script generates when run
+/*.png
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

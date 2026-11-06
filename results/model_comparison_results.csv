@@ -1,0 +1,10 @@
+,Linear Regression,Random Forest
+MAE (°C),3.6447,0.6922
+MSE,27.0467,1.1447
+RMSE (°C),5.2006,1.0699
+R² Score,0.7587,0.9898
+Prediction Accuracy (±2°C),0.4846,0.9315
+Accuracy,0.7224,0.951
+Precision,0.7258,0.951
+Recall,0.7224,0.951
+F1 Score,0.7237,0.951

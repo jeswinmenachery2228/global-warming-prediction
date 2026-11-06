@@ -1,0 +1,151 @@
+STEP 1: Loading dataset...
+Total rows in original dataset : 577462
+Total columns                  : 4
+
+First 5 rows:
+           dt  AverageTemperature  AverageTemperatureUncertainty Country
+0  1743-11-01               4.384                          2.294   Åland
+1  1743-12-01                 NaN                            NaN   Åland
+2  1744-01-01                 NaN                            NaN   Åland
+3  1744-02-01                 NaN                            NaN   Åland
+4  1744-03-01                 NaN                            NaN   Åland
+
+Dataset information:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 577462 entries, 0 to 577461
+Data columns (total 4 columns):
+ #   Column                         Non-Null Count   Dtype  
+---  ------                         --------------   -----  
+ 0   dt                             577462 non-null  object 
+ 1   AverageTemperature             544811 non-null  float64
+ 2   AverageTemperatureUncertainty  545550 non-null  float64
+ 3   Country                        577462 non-null  object 
+dtypes: float64(2), object(2)
+memory usage: 17.6+ MB
+
+Missing values in each column:
+dt                                   0
+AverageTemperature               32651
+AverageTemperatureUncertainty    31912
+Country                              0
+dtype: int64
+
+Statistical summary:
+       AverageTemperature  AverageTemperatureUncertainty
+count       544811.000000                  545550.000000
+mean            17.193354                       1.019057
+std             10.953966                       1.201930
+min            -37.658000                       0.052000
+25%             10.025000                       0.323000
+50%             20.901000                       0.571000
+75%             25.814000                       1.206000
+max             38.842000                      15.003000
+
+STEP 2: Cleaning data...
+Rows after cleaning           : 328818
+Number of countries           : 242
+
+STEP 3: Exploratory Data Analysis...
+
+Correlation matrix:
+                               AverageTemperature  ...  Country_Code
+AverageTemperature                          1.000  ...        -0.013
+AverageTemperatureUncertainty              -0.087  ...         0.022
+Year                                        0.028  ...        -0.002
+Month                                       0.074  ...        -0.000
+Country_Code                               -0.013  ...         1.000
+
+[5 rows x 5 columns]
+
+STEP 4: Splitting data into 80% train and 20% test...
+Training rows (80%) : 263054
+Testing rows  (20%) : 65764
+
+STEP 5: Training Linear Regression...
+STEP 6: Training Random Forest (please wait 1-3 minutes)...
+
+STEP 7: Model results on the 20% TEST data
+
+=======================================================
+  LINEAR REGRESSION
+=======================================================
+  REGRESSION METRICS
+  MAE  (Mean Absolute Error)      : 3.645 °C
+  MSE  (Mean Squared Error)       : 27.047
+  RMSE (Root Mean Squared Error)  : 5.201 °C
+  R² Score                        : 0.7587  (75.87%)
+  Prediction Accuracy (±2 °C)     : 48.46%
+
+  CLASSIFICATION METRICS (Cold / Moderate / Hot)
+  Accuracy                        : 72.24%
+  Precision                       : 72.58%
+  Recall                          : 72.24%
+  F1 Score                        : 72.37%
+
+  Classification Report:
+              precision    recall  f1-score   support
+
+        Cold       0.67      0.72      0.69     13325
+    Moderate       0.66      0.66      0.66     26737
+         Hot       0.83      0.78      0.80     25702
+
+    accuracy                           0.72     65764
+   macro avg       0.72      0.72      0.72     65764
+weighted avg       0.73      0.72      0.72     65764
+
+
+=======================================================
+  RANDOM FOREST
+=======================================================
+  REGRESSION METRICS
+  MAE  (Mean Absolute Error)      : 0.692 °C
+  MSE  (Mean Squared Error)       : 1.145
+  RMSE (Root Mean Squared Error)  : 1.070 °C
+  R² Score                        : 0.9898  (98.98%)
+  Prediction Accuracy (±2 °C)     : 93.15%
+
+  CLASSIFICATION METRICS (Cold / Moderate / Hot)
+  Accuracy                        : 95.10%
+  Precision                       : 95.10%
+  Recall                          : 95.10%
+  F1 Score                        : 95.10%
+
+  Classification Report:
+              precision    recall  f1-score   support
+
+        Cold       0.97      0.96      0.96     13325
+    Moderate       0.94      0.94      0.94     26737
+         Hot       0.95      0.96      0.96     25702
+
+    accuracy                           0.95     65764
+   macro avg       0.95      0.95      0.95     65764
+weighted avg       0.95      0.95      0.95     65764
+
+
+FINAL COMPARISON TABLE
+                            Linear Regression  Random Forest
+MAE (°C)                               3.6447         0.6922
+MSE                                   27.0467         1.1447
+RMSE (°C)                              5.2006         1.0699
+R² Score                               0.7587         0.9898
+Prediction Accuracy (±2°C)             0.4846         0.9315
+Accuracy                               0.7224         0.9510
+Precision                              0.7258         0.9510
+Recall                                 0.7224         0.9510
+F1 Score                               0.7237         0.9510
+
+BEST MODEL: Random Forest
+
+Linear Regression says temperature rises by 1.03 °C every 100 years (global warming trend).
+
+STEP 9: Predicted yearly average temperature for India
+Year        Linear Reg   Random Forest
+2020           24.78°C         24.60°C
+2030           24.89°C         24.60°C
+2050           25.09°C         24.60°C
+Note: Random Forest cannot extrapolate beyond 2013 (last year in data),
+so Linear Regression is better for long-term FUTURE trend prediction,
+while Random Forest is more accurate within the known time range.
+
+Project complete! Graphs (PNG) and model_comparison_results.csv
+are saved in the project folder.
